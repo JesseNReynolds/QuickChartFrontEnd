@@ -13,4 +13,14 @@ class Song{
         const s = new Song(obj.id, obj.name, JSON.parse(obj.properties));
         return s;
     }
+
+    renderSong() {
+        const songContainer = document.createElement('div');
+        songContainer.innerText = `${this.name}`;
+        songContainer.id += `${this.id}`;
+        songContainer.className += 'song';
+        CONTENT.appendChild(songContainer);
+        // songContainer.addEventListener('click', () => this.showSong());
+    }
+
 }

@@ -29,10 +29,8 @@ function fetchSongs() {
         .then(resp => resp.json())
         .then(songs => {
             songs.forEach(song => {
-                console.log(song);
                 const s = Song.newFromObj(song);
-                console.log(s)
-            //    s.renderSong();
+                s.renderSong();
             })
         })
 }
