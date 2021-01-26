@@ -11,7 +11,6 @@ class Composer{
     }
 
     showComposer() {
-        console.log(this)
         CONTENT.innerHTML = '';
         const composerContainer = document.createElement('div');
         composerContainer.innerHTML += `${this.name}`;

@@ -7,9 +7,9 @@ const composerNav = document.getElementById('composers-nav');
 const songsNav = document.getElementById('songs-nav');
 
 composerNav.addEventListener('click', () => fetchComposers());
-songsNav.addEventListener('click', () => console.log('clicked songs'));
+songsNav.addEventListener('click', () => fetchSongs());
 
-// Fill parent element with list of composers
+// Fill content with list of composers
 function fetchComposers() {
     CONTENT.innerHTML = '';
     fetch(`${BASEURL}/composers`)
@@ -18,6 +18,20 @@ function fetchComposers() {
             composers.forEach(composer => {
                const c = Composer.newFromObj(composer);
                c.renderComposer();
+            })
+        })
+}
+
+// Fill content with list of songs
+function fetchSongs() {
+    CONTENT.innerHTML = '';
+    fetch(`${BASEURL}/songs`)
+        .then(resp => resp.json())
+        .then(songs => {
+            songs.forEach(song => {
+                console.log(songs)
+            //    const s = song.newFromObj(Song);
+            //    s.renderSong();
             })
         })
 }
