@@ -1,22 +1,31 @@
 class Composer{
 
     constructor(id, name){
-        this.id = id
-        this.name = name
+        this.id = id;
+        this.name = name;
     }
 
     static newFromObj(obj) {
-        const c = new Composer(obj.id, obj.name)
-        return c
+        const c = new Composer(obj.id, obj.name);
+        return c;
+    }
+
+    showComposer() {
+        console.log(this)
+        CONTENT.innerHTML = '';
+        const composerContainer = document.createElement('div');
+        composerContainer.innerHTML += `${this.name}`;
+        // FUNCTION TO SHOW COMOPOSERS SONGS
+        CONTENT.appendChild(composerContainer);
     }
 
     renderComposer() {
-        let composerContainer = document.createElement('div');
+        const composerContainer = document.createElement('div');
         composerContainer.innerText = `${this.name}`;
         composerContainer.id += `${this.id}`;
         composerContainer.className += 'composer';
-        console.log(composerContainer);
         CONTENT.appendChild(composerContainer);
+        composerContainer.addEventListener('click', () => this.showComposer());
     }
 
 }
