@@ -30,8 +30,6 @@ function fetchSongs() {
         .then(songs => {
             songs.forEach(song => {
                 console.log(song);
-                // console.log(JSON.parse(song["properties"]));
-                debugger
                 const s = Song.newFromObj(song);
                 console.log(s)
             //    s.renderSong();

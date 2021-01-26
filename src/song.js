@@ -1,16 +1,16 @@
 class Song{
 
-    constructor(id, name, object_notation) {
+    constructor(id, name, properties) {
         this.id = id;
         this.name = name;
-        this.tonic = object_notation["tonic"];
-        this.mode = object_notation["mode"];
-        this.timeSignature = object_notation["timeSignature"];
-        this.measures = object_notation["measures"];
+        this.tonic = properties["tonic"];
+        this.mode = properties["mode"];
+        this.timeSignature = properties["timeSignature"];
+        this.measures = properties["measures"];
     }
 
     static newFromObj(obj) {
-        const s = new Song(obj.id, obj.name, obj.object_notation);
+        const s = new Song(obj.id, obj.name, JSON.parse(obj.properties));
         return s;
     }
 }
