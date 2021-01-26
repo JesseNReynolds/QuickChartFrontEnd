@@ -14,7 +14,7 @@ class Composer{
         CONTENT.innerHTML = '';
         const composerContainer = document.createElement('div');
         composerContainer.innerHTML += `${this.name}`;
-        // FUNCTION TO SHOW COMOPOSERS SONGS
+        // FUNCTION TO SHOW COMPOSERS SONGS
         CONTENT.appendChild(composerContainer);
     }
 
