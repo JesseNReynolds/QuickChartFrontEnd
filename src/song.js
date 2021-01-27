@@ -20,7 +20,23 @@ class Song{
         songContainer.id += `${this.id}`;
         songContainer.className += 'song';
         CONTENT.appendChild(songContainer);
-        // songContainer.addEventListener('click', () => this.showSong());
+        songContainer.addEventListener('click', () => this.showSong());
+    }
+
+    showSong() {
+        console.log('test')
+        CONTENT.innerHTML = ''
+        const showSongContainer = document.createElement('div');
+        showSongContainer.innerHTML = 
+        `${this.name} <br>
+        ${this.tonic} <br>
+        ${this.mode} <br>
+        ${this.timeSignature} <br>
+        `;
+        // console.log(this.measures)
+        showSongContainer.id += `${this.id}`;
+        showSongContainer.className += 'song';
+        CONTENT.appendChild(showSongContainer);
     }
 
 }

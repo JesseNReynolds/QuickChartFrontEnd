@@ -14,7 +14,14 @@ class Composer{
         CONTENT.innerHTML = '';
         const composerContainer = document.createElement('div');
         composerContainer.innerHTML += `${this.name}`;
-        // FUNCTION TO SHOW COMPOSERS SONGS
+        fetch(`${BASEURL}/composers/${this.id}/songs`)
+            .then(resp => resp.json())
+            .then(songs => {
+                songs.forEach(song => {
+                    const s = Song.newFromObj(song);
+                    s.renderSong();
+                })
+            })
         CONTENT.appendChild(composerContainer);
     }
 
