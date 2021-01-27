@@ -29,9 +29,9 @@ class Song{
         showSongContainer.id += 'show-song-container'
         showSongContainer.innerHTML = 
         `${this.name} <br>
-        ${this.tonic} <br>
-        ${this.mode} <br>
-        ${this.timeSignature} <br>
+        Tonic: ${this.tonic} <br>
+        Mode: ${this.mode} <br>
+        Time signature: ${this.timeSignature} <br>
         `;
         showSongContainer.className += 'song';
         CONTENT.appendChild(showSongContainer);
