@@ -49,23 +49,27 @@ class Song{
     }
 
     measureWithHalfMeasureDivsWithSelects(measure) {
+        const measuresContainer = document.getElementById('measures-container');
         const measureDiv = document.createElement('div');
         const firstHalfDiv = document.createElement('div');
         const secondHalfDiv = document.createElement('div');
+        measureDiv.classList += 'measure'
+        measuresContainer.appendChild(measureDiv);
         measureDiv.appendChild(firstHalfDiv)
         measureDiv.appendChild(secondHalfDiv) 
-        firstHalfDiv.innerHTML = this.selectsFromHalfMeasure(measure["firstHalf"])
-        secondHalfDiv.innerHTML = this.selectsFromHalfMeasure(measure["secondHalf"])
-        const measuresContainer = document.getElementById('measures-container')
-        measuresContainer.appendChild(measure)      
+        this.selectsFromHalfMeasure(measure["firstHalf"], firstHalfDiv)
+        this.selectsFromHalfMeasure(measure["secondHalf"], secondHalfDiv)
+     
     }
 
-    selectsFromHalfMeasure(halfMeasure) {
+    selectsFromHalfMeasure(halfMeasure, targetDiv) {
         const intervalSelect = document.createElement('select')
+        console.log(halfMeasure["interval"])
         intervalSelect.value = halfMeasure["interval"]
+        targetDiv.appendChild(intervalSelect)
         const modifierSelect = document.createElement('select')
         modifierSelect.value = halfMeasure["modifier"]
-        // THESE ARE NOT GETTING ATTATCHED TO ANYTHING BECAUSE THE SELECT NEVER GETS APPENDED
+        targetDiv.appendChild(modifierSelect)
         INTERVALS.forEach(interval => {
             const option = document.createElement('option')
             console.log(option)
@@ -79,11 +83,3 @@ class Song{
         })
     }
 }
-
-// const firstDiv = document.createElement('div')
-//             const secondDiv = document.createElement('div')
-//             div.appendChild(firstDiv)
-//             div.appendChild(secondDiv)
-//             firstDiv.innerHTML += `${measure["firstHalf"]["interval"]}`
-//             firstDiv.innerHTML += `${measure["firstHalf"]["modifier"]}`;
-//             secondDiv.innerText += `${measure["secondHalf"]["interval"]}${measure["secondHalf"]["modifier"]}`;
