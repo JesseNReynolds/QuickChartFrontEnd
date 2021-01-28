@@ -24,15 +24,17 @@ body {
     color:  #A4BAB7;
 }
 
-.measures-container {
+#measures-container {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: flex-start;
 }
 
-.measure-div {
+.measure {
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
+    border: 2px solid black;
+    margin: 2px 0px 2px 0px;
 }

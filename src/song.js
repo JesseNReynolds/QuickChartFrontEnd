@@ -43,12 +43,12 @@ class Song{
         const measuresContainer = document.createElement('div');
         measuresContainer.id += 'measures-container'
         showSongContainer.appendChild(measuresContainer)        
-        this.measures.forEach(measure => {
-        this.measureWithHalfMeasureDivsWithSelects(measure)
+        this.measures.forEach((measure, index) => {
+        this.measureWithHalfMeasureDivsWithSelects(measure, index)
         });
     }
-
-    measureWithHalfMeasureDivsWithSelects(measure) {
+// I feel like a lot of this shouldn't be here, but rather in index.js.
+    measureWithHalfMeasureDivsWithSelects(measure, index) {
         const measuresContainer = document.getElementById('measures-container');
         const measureDiv = document.createElement('div');
         const firstHalfDiv = document.createElement('div');
@@ -59,7 +59,12 @@ class Song{
         measureDiv.appendChild(secondHalfDiv) 
         this.selectsFromHalfMeasure(measure["firstHalf"], firstHalfDiv)
         this.selectsFromHalfMeasure(measure["secondHalf"], secondHalfDiv)
-     
+        const addMeasureButton = document.createElement('button')
+        addMeasureButton.innerText = "+"
+        addMeasureButton.classList += 'add-measure-button'
+        addMeasureButton.id = `${index}`
+        measuresContainer.appendChild(addMeasureButton)
+
     }
 
     selectsFromHalfMeasure(halfMeasure, targetDiv) {
