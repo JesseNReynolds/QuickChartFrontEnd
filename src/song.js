@@ -10,6 +10,7 @@ class Song{
     }
 
     static newFromObj(obj) {
+        console.log(obj)
         const s = new Song(obj.id, obj.name, JSON.parse(obj.properties));
         return s;
     }
@@ -43,12 +44,12 @@ class Song{
         const measuresContainer = document.createElement('div');
         measuresContainer.id += 'measures-container'
         showSongContainer.appendChild(measuresContainer)        
-        this.measures.forEach((measure, index) => {
-        this.measureWithHalfMeasureDivsWithSelects(measure, index)
+        this.measures.forEach((measure) => {
+        Song.measureWithHalfMeasureDivsWithSelects(measure)
         });
     }
-// I feel like a lot of this shouldn't be here, but rather in index.js.
-    measureWithHalfMeasureDivsWithSelects(measure, index) {
+
+    static measureWithHalfMeasureDivsWithSelects(measure) {
         const measuresContainer = document.getElementById('measures-container');
         const measureDiv = document.createElement('div');
         const firstHalfDiv = document.createElement('div');
@@ -57,17 +58,16 @@ class Song{
         measuresContainer.appendChild(measureDiv);
         measureDiv.appendChild(firstHalfDiv)
         measureDiv.appendChild(secondHalfDiv) 
-        this.selectsFromHalfMeasure(measure["firstHalf"], firstHalfDiv)
-        this.selectsFromHalfMeasure(measure["secondHalf"], secondHalfDiv)
+        Song.selectsFromHalfMeasure(measure["firstHalf"], firstHalfDiv)
+        Song.selectsFromHalfMeasure(measure["secondHalf"], secondHalfDiv)
         const addMeasureButton = document.createElement('button')
         addMeasureButton.innerText = "+"
         addMeasureButton.classList += 'add-measure-button'
-        addMeasureButton.id = `${index}`
         measuresContainer.appendChild(addMeasureButton)
-
+        addMeasureButton.addEventListener('click', Song.addMeasure)
     }
 
-    selectsFromHalfMeasure(halfMeasure, targetDiv) {
+    static selectsFromHalfMeasure(halfMeasure, targetDiv) {
         const intervalSelect = document.createElement('select')
         targetDiv.appendChild(intervalSelect)
 
@@ -76,7 +76,6 @@ class Song{
 
         INTERVALS.forEach(interval => {
             const option = document.createElement('option')
-            console.log(option)
             option.text = interval
             intervalSelect.add(option)
         })
@@ -89,5 +88,21 @@ class Song{
 
         intervalSelect.value = halfMeasure["interval"]
         modifierSelect.value = halfMeasure["modifier"]
+    }
+
+    static addMeasure() {
+        const measuresContainer = document.getElementById('measures-container');
+        const configObj = {
+            "firstHalf": {
+                "interval": "",
+                "modifier": ""
+            },
+            "secondHalf": {
+                "interval": "",
+                "modifier": ""
+            }
+        }
+        debugger
+        measuresContainer.insertBefore(Song.measureWithHalfMeasureDivsWithSelects(configObj), this.nextElementSibling)
     }
 }
