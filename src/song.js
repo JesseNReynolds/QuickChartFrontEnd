@@ -89,11 +89,11 @@ class Song{
         if (!!triggeringButton) {
             const target = measureDiv.nextElementSibling
             measuresContainer.insertBefore(addMeasureButton, target)
-            addMeasureButton.addEventListener('click', (e) => Song.addMeasure(e.srcElement))
         } else {            
             measuresContainer.appendChild(addMeasureButton)
-            addMeasureButton.addEventListener('click', (e) => Song.addMeasure(e.srcElement))
         }
+
+        addMeasureButton.addEventListener('click', (e) => Song.addMeasure(e.srcElement))
 
     }
 
