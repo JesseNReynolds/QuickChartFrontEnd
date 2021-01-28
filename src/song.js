@@ -41,17 +41,49 @@ class Song{
     measuresToDivs(){
         const showSongContainer = document.getElementById('show-song-container')
         const measuresContainer = document.createElement('div');
-        measuresContainer.className += 'measures-container'
-
+        measuresContainer.id += 'measures-container'
         showSongContainer.appendChild(measuresContainer)        
         this.measures.forEach(measure => {
-            const div = document.createElement('div');
-            div.className += 'measure-div';
-            div.innerText += `${measure["firstHalf"]["interval"]}${measure["firstHalf"]["modifier"]}`;
-            div.innerText += `${measure["secondHalf"]["interval"]}${measure["secondHalf"]["modifier"]}`;
-            measuresContainer.appendChild(div)
+        this.measureWithHalfMeasureDivsWithSelects(measure)
         });
-        
+    }
 
+    measureWithHalfMeasureDivsWithSelects(measure) {
+        const measureDiv = document.createElement('div');
+        const firstHalfDiv = document.createElement('div');
+        const secondHalfDiv = document.createElement('div');
+        measureDiv.appendChild(firstHalfDiv)
+        measureDiv.appendChild(secondHalfDiv) 
+        firstHalfDiv.innerHTML = this.selectsFromHalfMeasure(measure["firstHalf"])
+        secondHalfDiv.innerHTML = this.selectsFromHalfMeasure(measure["secondHalf"])
+        const measuresContainer = document.getElementById('measures-container')
+        measuresContainer.appendChild(measure)      
+    }
+
+    selectsFromHalfMeasure(halfMeasure) {
+        const intervalSelect = document.createElement('select')
+        intervalSelect.value = halfMeasure["interval"]
+        const modifierSelect = document.createElement('select')
+        modifierSelect.value = halfMeasure["modifier"]
+        // THESE ARE NOT GETTING ATTATCHED TO ANYTHING BECAUSE THE SELECT NEVER GETS APPENDED
+        INTERVALS.forEach(interval => {
+            const option = document.createElement('option')
+            console.log(option)
+            option.text = interval
+            intervalSelect.add(option)
+        })
+        MODIFIERS.forEach(modifier => {
+            const option = document.createElement('option')
+            option.text = modifier
+            modifierSelect.add(option)
+        })
     }
 }
+
+// const firstDiv = document.createElement('div')
+//             const secondDiv = document.createElement('div')
+//             div.appendChild(firstDiv)
+//             div.appendChild(secondDiv)
+//             firstDiv.innerHTML += `${measure["firstHalf"]["interval"]}`
+//             firstDiv.innerHTML += `${measure["firstHalf"]["modifier"]}`;
+//             secondDiv.innerText += `${measure["secondHalf"]["interval"]}${measure["secondHalf"]["modifier"]}`;

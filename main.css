@@ -26,3 +26,9 @@ body {
     flex-wrap: wrap;
     justify-content: space-around;
 }
+
+.measure-div {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
