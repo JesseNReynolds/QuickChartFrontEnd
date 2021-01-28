@@ -64,22 +64,25 @@ class Song{
 
     selectsFromHalfMeasure(halfMeasure, targetDiv) {
         const intervalSelect = document.createElement('select')
-        console.log(halfMeasure["interval"])
-        intervalSelect.value = halfMeasure["interval"]
         targetDiv.appendChild(intervalSelect)
+
         const modifierSelect = document.createElement('select')
-        modifierSelect.value = halfMeasure["modifier"]
         targetDiv.appendChild(modifierSelect)
+
         INTERVALS.forEach(interval => {
             const option = document.createElement('option')
             console.log(option)
             option.text = interval
             intervalSelect.add(option)
         })
+
         MODIFIERS.forEach(modifier => {
             const option = document.createElement('option')
             option.text = modifier
             modifierSelect.add(option)
         })
+
+        intervalSelect.value = halfMeasure["interval"]
+        modifierSelect.value = halfMeasure["modifier"]
     }
 }
