@@ -10,7 +10,6 @@ class Song{
     }
 
     static newFromObj(obj) {
-        console.log(obj)
         const s = new Song(obj.id, obj.name, JSON.parse(obj.properties));
         return s;
     }
@@ -49,25 +48,56 @@ class Song{
         });
     }
 
-    static measureWithHalfMeasureDivsWithSelects(measure) {
+    // ADD
+    // A
+    // WAY
+    // TO
+    // TARGET
+    // SO
+    // YOU
+    // CAN
+    // TARGET
+    // WHEN 
+    // YOU
+    // ADD
+    // A
+    // NEW
+    // MEASURE
+
+    static measureWithHalfMeasureDivsWithSelects(measure, triggeringButton) {
         const measuresContainer = document.getElementById('measures-container');
         const measureDiv = document.createElement('div');
         const firstHalfDiv = document.createElement('div');
         const secondHalfDiv = document.createElement('div');
         measureDiv.classList += 'measure'
-        measuresContainer.appendChild(measureDiv);
+        
+        if (!!triggeringButton) {
+            const target = triggeringButton.nextElementSibling
+            measuresContainer.insertBefore(measureDiv, target);
+        } else {
+            measuresContainer.appendChild(measureDiv);
+        }
+
         measureDiv.appendChild(firstHalfDiv)
-        measureDiv.appendChild(secondHalfDiv) 
-        Song.selectsFromHalfMeasure(measure["firstHalf"], firstHalfDiv)
-        Song.selectsFromHalfMeasure(measure["secondHalf"], secondHalfDiv)
+        measureDiv.appendChild(secondHalfDiv)
+        Song.buildSelectsFromHalfMeasure(measure["firstHalf"], firstHalfDiv)
+        Song.buildSelectsFromHalfMeasure(measure["secondHalf"], secondHalfDiv)
         const addMeasureButton = document.createElement('button')
         addMeasureButton.innerText = "+"
         addMeasureButton.classList += 'add-measure-button'
-        measuresContainer.appendChild(addMeasureButton)
-        addMeasureButton.addEventListener('click', Song.addMeasure)
+
+        if (!!triggeringButton) {
+            const target = measureDiv.nextElementSibling
+            measuresContainer.insertBefore(addMeasureButton, target)
+            addMeasureButton.addEventListener('click', (e) => Song.addMeasure(e.srcElement))
+        } else {            
+            measuresContainer.appendChild(addMeasureButton)
+            addMeasureButton.addEventListener('click', (e) => Song.addMeasure(e.srcElement))
+        }
+
     }
 
-    static selectsFromHalfMeasure(halfMeasure, targetDiv) {
+    static buildSelectsFromHalfMeasure(halfMeasure, targetDiv) {
         const intervalSelect = document.createElement('select')
         targetDiv.appendChild(intervalSelect)
 
@@ -90,8 +120,7 @@ class Song{
         modifierSelect.value = halfMeasure["modifier"]
     }
 
-    static addMeasure() {
-        const measuresContainer = document.getElementById('measures-container');
+    static addMeasure(srcButton) {
         const configObj = {
             "firstHalf": {
                 "interval": "",
@@ -102,7 +131,6 @@ class Song{
                 "modifier": ""
             }
         }
-        debugger
-        measuresContainer.insertBefore(Song.measureWithHalfMeasureDivsWithSelects(configObj), this.nextElementSibling)
+        Song.measureWithHalfMeasureDivsWithSelects(configObj, srcButton)
     }
 }
