@@ -62,6 +62,4 @@ function createNewComposerForm() {
     label.innerText = "Name: "
     CONTENT.insertBefore(label, newComposerButton)
     CONTENT.insertBefore(nameField, newComposerButton)
-    
-
 }

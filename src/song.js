@@ -116,5 +116,16 @@ class Song{
             }
         }
         Song.measureWithHalfMeasureDivsWithSelects(configObj, srcButton)
+
+        const saveButton = document.getElementById('save-song-changes-button')
+
+        if (!saveButton) {
+            const button = document.createElement('button')
+            button.id = 'save-song-changes-button'
+            button.innerText = "Save Changes"
+            CONTENT.appendChild(button)
+            button.addEventListener('click', () => console.log('come back to build function!'), {once: true})
+        }
     }
+    
 }
