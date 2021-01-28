@@ -11,6 +11,9 @@ const songsNav = document.getElementById('songs-nav');
 composerNav.addEventListener('click', () => fetchComposers());
 songsNav.addEventListener('click', () => fetchSongs());
 
+// When DOMContent loaded
+fetchComposers()
+
 // Fill content with list of composers
 function fetchComposers() {
     CONTENT.innerHTML = '';
@@ -22,6 +25,9 @@ function fetchComposers() {
                c.renderComposer();
             })
         })
+        .then( () => newComposerButton() )
+
+
 }
 
 // Fill content with list of songs
@@ -37,5 +43,25 @@ function fetchSongs() {
         })
 }
 
-// When DOMContent loaded
-fetchComposers()
+// add buttons to create form for new composer or song
+
+function newComposerButton() {
+    const newComposerButton = document.createElement('button')
+    newComposerButton.id = 'new-composer-button'
+    newComposerButton.innerText = "Add a New Composer"
+    CONTENT.appendChild(newComposerButton)
+    newComposerButton.addEventListener('click', () => createNewComposerForm(), {once: true})
+}
+
+function createNewComposerForm() {
+    const newComposerButton = document.getElementById('new-composer-button')
+    newComposerButton.innerText = "Submit New Composer"
+    newComposerButton.addEventListener('click', console.log('test'), {once: true})
+    const nameField = document.createElement('input')
+    const label = document.createElement('label')
+    label.innerText = "Name: "
+    CONTENT.insertBefore(label, newComposerButton)
+    CONTENT.insertBefore(nameField, newComposerButton)
+    
+
+}
