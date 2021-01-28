@@ -48,22 +48,6 @@ class Song{
         });
     }
 
-    // ADD
-    // A
-    // WAY
-    // TO
-    // TARGET
-    // SO
-    // YOU
-    // CAN
-    // TARGET
-    // WHEN 
-    // YOU
-    // ADD
-    // A
-    // NEW
-    // MEASURE
-
     static measureWithHalfMeasureDivsWithSelects(measure, triggeringButton) {
         const measuresContainer = document.getElementById('measures-container');
         const measureDiv = document.createElement('div');
