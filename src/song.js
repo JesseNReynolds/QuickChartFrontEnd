@@ -28,12 +28,7 @@ class Song{
         CONTENT.innerHTML = ''
         const showSongContainer = document.createElement('div');
         showSongContainer.id += 'show-song-container'
-        showSongContainer.innerHTML = 
-        `<h2>${this.name}</h2>
-        <p>Tonic: ${this.tonic}</p>
-        <p>Mode: ${this.mode}</p>
-        <p>Time signature: ${this.timeSignature}</p>
-        `;
+        showSongContainer.innerHTML = `<h2>${this.name}</h2>`
         CONTENT.appendChild(showSongContainer);
         this.measuresToDivs()
     }
@@ -137,7 +132,7 @@ class Song{
     }
 
     static newSongButton() {
-        const button = document.createElement('buton')
+        const button = document.createElement('button')
         button.innerText = "New Song"
         button.classList += 'grey-button'
         button.id = 'new-song'
