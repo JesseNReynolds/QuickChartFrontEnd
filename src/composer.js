@@ -13,7 +13,8 @@ class Composer{
     showComposer() {
         CONTENT.innerHTML = '';
         const composerContainer = document.createElement('div');
-        composerContainer.innerHTML += `${this.name}`;
+        composerContainer.innerHTML += `<h3>${this.name}</h3>`;
+        CONTENT.appendChild(composerContainer);
         fetch(`${BASEURL}/composers/${this.id}/songs`)
             .then(resp => resp.json())
             .then(songs => {
@@ -22,17 +23,17 @@ class Composer{
                     s.renderSong();
                 })
             })
-        CONTENT.appendChild(composerContainer);
     }
 
     renderComposer() {
         const composersWrapper = document.getElementById('composers-wrapper')
         const composerContainer = document.createElement('div');
-        composerContainer.innerHTML = `<h3>${this.name}</h3>`;
-        composerContainer.id += `${this.id}`;
-        composerContainer.className += 'composer';
+;
         composersWrapper.appendChild(composerContainer);
 
+        composerContainer.innerHTML = `<h3>${this.name}</h3>`;
+        composerContainer.id += `${this.id}`;
+        composerContainer.className += 'composer'
         composerContainer.addEventListener('click', () => this.showComposer());
     }
 
