@@ -69,7 +69,7 @@ class Song{
         
         const addMeasureButton = document.createElement('button')
         addMeasureButton.innerText = "+"
-        addMeasureButton.classList += 'add-measure-button'
+        addMeasureButton.classList += 'grey-button add-measure-button'
 
         if (!!triggeringButton) {
             const target = measureDiv.nextElementSibling
@@ -78,7 +78,7 @@ class Song{
             measureDiv.appendChild(addMeasureButton)
         }
 
-        measureDiv.addEventListener('click', (e) => Song.addMeasure(e.srcElement))
+        addMeasureButton.addEventListener('click', (e) => Song.addMeasure(e.srcElement))
 
     }
 
@@ -129,10 +129,42 @@ class Song{
         if (!saveButton) {
             const button = document.createElement('button')
             button.id = 'save-song-changes-button'
+            button.classList += 'grey-button'
             button.innerText = "Save Changes"
             CONTENT.appendChild(button)
             button.addEventListener('click', () => console.log('come back to build function!'), {once: true})
         }
+    }
+
+    static newSongButton() {
+        const button = document.createElement('buton')
+        button.innerText = "New Song"
+        button.classList += 'grey-button'
+        button.id = 'new-song'
+        CONTENT.appendChild(button)
+        button.addEventListener('click', Song.newSong)
+    }
+
+    static newSong() {
+
+        const configObj = {
+        "tonic": '',
+        "mode": '',
+        "timeSignature": '',
+        "measures": [{
+            "firstHalf": {
+                "interval": "",
+                "modifier": ""
+            },
+            "secondHalf": {
+                "interval": "",
+                "modifier": ""
+            }
+        }]
+        }
+
+        const song = new Song('', '', configObj)
+        song.showSong()
     }
     
 }

@@ -28,6 +28,8 @@ class Composer{
                     s.renderSong();
                 })
             })
+
+        Song.newSongButton()
     }
 
     renderComposer() {
@@ -40,5 +42,4 @@ class Composer{
         composerContainer.className += 'composer';
         composerContainer.addEventListener('click', () => this.showComposer());
     }
-
 }

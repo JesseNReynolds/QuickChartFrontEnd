@@ -54,6 +54,7 @@ function fetchSongs() {
 
 function newComposerButton() {
     const newComposerButton = document.createElement('button')
+    newComposerButton.classList += 'grey-button'
     newComposerButton.id = 'new-composer-button'
     newComposerButton.innerText = "Add a New Composer"
     CONTENT.appendChild(newComposerButton)
@@ -75,7 +76,6 @@ function createNewComposerForm() {
 function persistNewComposer() {
     const nameField = document.getElementById('composer-name-field')
     const composer = new Composer(nameField.value)
-    console.log(composer)
     fetch(`${BASEURL}/composers`, {
         method: 'POST',
         headers: {
@@ -86,3 +86,4 @@ function persistNewComposer() {
     })
     .then(() => fetchComposers())
 }
+

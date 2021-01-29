@@ -3,21 +3,27 @@ body {
     margin: 0px, 5px, 0px, 5px;
 }
 p {
-    margin-left: 3em;
+    margin-left: 3rem;
 }
 h2 {
     color: #468189;
-    margin-left: 2em;
+    margin-left: 2rem;
 }
 
 h3 {
     color: #468189;
-    margin-left: 1.5em;
+    margin-left: 2rem;
 }
 
 h4 {
     color: #468189;
-    margin-left: 2em;
+    margin-left: 2rem;
+}
+
+select {
+    border: 0px;
+    height: 100%;
+    background-color: white;
 }
 
 #content {
@@ -88,4 +94,13 @@ h4 {
     flex-wrap: nowrap;
     border: 2px solid black;
     margin: 5px 2px 5px 2px;
+}
+
+.grey-button {
+    background-color: #468189;
+    margin-left: 2rem;
+}
+
+.add-measure-button {
+    width: auto;
 }
