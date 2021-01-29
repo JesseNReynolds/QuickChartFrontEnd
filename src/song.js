@@ -102,6 +102,9 @@ class Song{
 
         intervalSelect.value = halfMeasure["interval"]
         modifierSelect.value = halfMeasure["modifier"]
+
+        intervalSelect.addEventListener('change', Song.addSaveButtonIfNonePresent)
+        modifierSelect.addEventListener('change', Song.addSaveButtonIfNonePresent)
     }
 
     static addMeasure(srcButton) {
@@ -116,7 +119,10 @@ class Song{
             }
         }
         Song.measureWithHalfMeasureDivsWithSelects(configObj, srcButton)
+        Song.addSaveButtonIfNonePresent()
+    }
 
+    static addSaveButtonIfNonePresent() {
         const saveButton = document.getElementById('save-song-changes-button')
 
         if (!saveButton) {
