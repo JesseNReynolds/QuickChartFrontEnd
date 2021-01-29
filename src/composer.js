@@ -26,11 +26,13 @@ class Composer{
     }
 
     renderComposer() {
+        const composersWrapper = document.getElementById('composers-wrapper')
         const composerContainer = document.createElement('div');
-        composerContainer.innerText = `${this.name}`;
+        composerContainer.innerHTML = `<h3>${this.name}</h3>`;
         composerContainer.id += `${this.id}`;
         composerContainer.className += 'composer';
-        CONTENT.appendChild(composerContainer);
+        composersWrapper.appendChild(composerContainer);
+
         composerContainer.addEventListener('click', () => this.showComposer());
     }
 

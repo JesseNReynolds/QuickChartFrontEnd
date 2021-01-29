@@ -17,6 +17,10 @@ fetchComposers()
 // Fill content with list of composers
 function fetchComposers() {
     CONTENT.innerHTML = '';
+    const composersWrapper = document.createElement('div');
+    composersWrapper.id += 'composers-wrapper';
+    CONTENT.appendChild(composersWrapper);
+
     fetch(`${BASEURL}/composers`)
         .then(resp => resp.json())
         .then(composers => {
