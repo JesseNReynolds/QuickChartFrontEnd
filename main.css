@@ -1,9 +1,21 @@
-body{
+body {
     width: 100vw;
     margin: 0px;
 }
+p {
+    margin-left: 3em;
+}
+h2 {
+    color: #468189;
+    margin-left: 2em;
+}
 
 h3 {
+    color: #468189;
+    margin-left: 2em;
+}
+
+h4 {
     color: #468189;
     margin-left: 2em;
 }
@@ -46,11 +58,29 @@ h3 {
     max-width: 80%;
 }
 
+#songs-wrapper {
+    display: flex;
+    width: auto;
+    flex-wrap: nowrap;
+    flex-direction: column;
+}
+
+
+.song {
+    border: 1px solid black;
+    border-radius: 3px;
+    margin: 5px;
+    max-width: 80%;
+}
+
 #measures-container {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: flex-start;
+    margin-left: 10px;
+    margin-right: 10px;
+    border: 2px solid red;
 }
 
 .measure {
@@ -58,5 +88,9 @@ h3 {
     flex-direction: row;
     flex-wrap: nowrap;
     border: 2px solid black;
-    margin: 2px 0px 2px 0px;
+    margin: 5px 2px 5px 2px;
 }
+/* 
+.add-measure-button {
+    height: 2em;
+} */

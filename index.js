@@ -37,6 +37,9 @@ function fetchComposers() {
 // Fill content with list of songs
 function fetchSongs() {
     CONTENT.innerHTML = '';
+    const songsWrapper = document.createElement('div');
+    songsWrapper.id += 'songs-wrapper';
+    CONTENT.appendChild(songsWrapper);
     fetch(`${BASEURL}/songs`)
         .then(resp => resp.json())
         .then(songs => {

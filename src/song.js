@@ -15,11 +15,12 @@ class Song{
     }
 
     renderSong() {
+        const songsWrapper = document.getElementById('songs-wrapper')
         const songContainer = document.createElement('div');
-        songContainer.innerText = `${this.name}`;
+        songContainer.innerHTML = `<h4>${this.name}</h4>`;
         songContainer.id += `${this.id}`;
         songContainer.className += 'song';
-        CONTENT.appendChild(songContainer);
+        songsWrapper.appendChild(songContainer);
         songContainer.addEventListener('click', () => this.showSong());
     }
 
@@ -28,12 +29,11 @@ class Song{
         const showSongContainer = document.createElement('div');
         showSongContainer.id += 'show-song-container'
         showSongContainer.innerHTML = 
-        `${this.name} <br>
-        Tonic: ${this.tonic} <br>
-        Mode: ${this.mode} <br>
-        Time signature: ${this.timeSignature} <br>
+        `<h2>${this.name}</h2>
+        <p>Tonic: ${this.tonic}</p>
+        <p>Mode: ${this.mode}</p>
+        <p>Time signature: ${this.timeSignature}</p>
         `;
-        showSongContainer.className += 'song';
         CONTENT.appendChild(showSongContainer);
         this.measuresToDivs()
     }
