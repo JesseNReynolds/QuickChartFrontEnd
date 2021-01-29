@@ -1,6 +1,6 @@
 body {
     width: 100vw;
-    margin: 0px;
+    margin: 0px, 5px, 0px, 5px;
 }
 p {
     margin-left: 3em;
@@ -12,7 +12,7 @@ h2 {
 
 h3 {
     color: #468189;
-    margin-left: 2em;
+    margin-left: 1.5em;
 }
 
 h4 {

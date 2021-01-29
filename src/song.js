@@ -56,7 +56,7 @@ class Song{
         measureDiv.classList += 'measure'
         
         if (!!triggeringButton) {
-            const target = triggeringButton.nextElementSibling
+            const target = triggeringButton.parentElement.nextElementSibling
             measuresContainer.insertBefore(measureDiv, target);
         } else {
             measuresContainer.appendChild(measureDiv);
@@ -66,18 +66,19 @@ class Song{
         measureDiv.appendChild(secondHalfDiv)
         Song.buildSelectsFromHalfMeasure(measure["firstHalf"], firstHalfDiv)
         Song.buildSelectsFromHalfMeasure(measure["secondHalf"], secondHalfDiv)
+        
         const addMeasureButton = document.createElement('button')
         addMeasureButton.innerText = "+"
         addMeasureButton.classList += 'add-measure-button'
 
         if (!!triggeringButton) {
             const target = measureDiv.nextElementSibling
-            measuresContainer.insertBefore(addMeasureButton, target)
+            measureDiv.appendChild(addMeasureButton, target)
         } else {            
-            measuresContainer.appendChild(addMeasureButton)
+            measureDiv.appendChild(addMeasureButton)
         }
 
-        addMeasureButton.addEventListener('click', (e) => Song.addMeasure(e.srcElement))
+        measureDiv.addEventListener('click', (e) => Song.addMeasure(e.srcElement))
 
     }
 
