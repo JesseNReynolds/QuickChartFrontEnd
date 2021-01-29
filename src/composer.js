@@ -1,12 +1,12 @@
 class Composer{
 
-    constructor(id, name){
+    constructor(name, id){
         this.id = id;
         this.name = name;
     }
 
     static newFromObj(obj) {
-        const c = new Composer(obj.id, obj.name);
+        const c = new Composer(obj.name, obj.id);
         return c;
     }
 

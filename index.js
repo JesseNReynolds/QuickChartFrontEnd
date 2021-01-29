@@ -43,7 +43,7 @@ function fetchSongs() {
         })
 }
 
-// add buttons to create form for new composer or song
+// Composer creation
 
 function newComposerButton() {
     const newComposerButton = document.createElement('button')
@@ -56,10 +56,26 @@ function newComposerButton() {
 function createNewComposerForm() {
     const newComposerButton = document.getElementById('new-composer-button')
     newComposerButton.innerText = "Submit New Composer"
-    newComposerButton.addEventListener('click', console.log('test'), {once: true})
+    newComposerButton.addEventListener('click', persistNewComposer, {once: true})
     const nameField = document.createElement('input')
     const label = document.createElement('label')
     label.innerText = "Name: "
+    nameField.id = 'composer-name-field'
     CONTENT.insertBefore(label, newComposerButton)
     CONTENT.insertBefore(nameField, newComposerButton)
+}
+
+function persistNewComposer() {
+    const nameField = document.getElementById('composer-name-field')
+    const composer = new Composer(nameField.value)
+    console.log(composer)
+    fetch(`${BASEURL}/composers`, {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(composer),
+    })
+    .then(() => fetchComposers())
 }
