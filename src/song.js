@@ -1,8 +1,9 @@
 class Song{
 
-    constructor(id, name, properties) {
+    constructor(name, properties, composer_id, id) {
         this.id = id;
         this.name = name;
+        this.composerID = composer_id
         this.tonic = properties["tonic"];
         this.mode = properties["mode"];
         this.timeSignature = properties["timeSignature"];
@@ -10,7 +11,7 @@ class Song{
     }
 
     static newFromObj(obj) {
-        const s = new Song(obj.id, obj.name, JSON.parse(obj.properties));
+        const s = new Song(obj.name, obj.properties, obj.composer_id, obj.id);
         return s;
     }
 
@@ -131,35 +132,54 @@ class Song{
         }
     }
 
-    static newSongButton() {
-        const button = document.createElement('button')
-        button.innerText = "New Song"
-        button.classList += 'grey-button'
-        button.id = 'new-song'
-        CONTENT.appendChild(button)
-        button.addEventListener('click', Song.newSong)
+    static newSongButton(composerObj) {
+        const button = document.getElementById('new-song-button')
+        button.innerText = "Create New Song"
+        button.addEventListener('click', () => Song.newSongFromButton(composerObj), {once: true})
+        
+        const label = document.createElement('label')
+        label.innerText = "Song Name: "
+        CONTENT.insertBefore(label, button)
+
+        const input = document.createElement('input')
+        input.id = 'song-name-field'
+        CONTENT.insertBefore(input, button)
+
     }
 
-    static newSong() {
-
+    static newSongFromButton(composerObj) {
         const configObj = {
-        "tonic": '',
-        "mode": '',
-        "timeSignature": '',
-        "measures": [{
-            "firstHalf": {
-                "interval": "",
-                "modifier": ""
-            },
-            "secondHalf": {
-                "interval": "",
-                "modifier": ""
-            }
-        }]
+            tonic: "",
+            mode: "",
+            timeSignature: "",
+            measures: [ 
+                {
+                    firstHalf: {
+                        interval: "",
+                        modifier: ""
+                    },
+                    secondHalf: {
+                        interval: "",
+                        modifier: ""
+                    }
+                }
+            ]
         }
 
-        const song = new Song('', '', configObj)
-        song.showSong()
+        
+        const nameField = document.getElementById('song-name-field')
+        const song = new Song(nameField.value, configObj, composerObj.id)
+        fetch(`${BASEURL}/songs`, {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: `{"name":"${song.name}","composer_id":${song.composerID},"properties":${JSON.stringify(configObj)}}`,
+            })
+            // .then(() => composerObj.renderComposer())
+        
     }
-    
+
+
 }

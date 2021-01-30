@@ -28,8 +28,13 @@ class Composer{
                     s.renderSong();
                 })
             })
-
-        Song.newSongButton()
+            
+        const newSongButton = document.createElement('button')
+        newSongButton.id = 'new-song-button'
+        newSongButton.innerText = "New Song"
+        newSongButton.classList += 'grey-button'
+        CONTENT.appendChild(newSongButton)
+        newSongButton.addEventListener('click', () => Song.newSongButton(this), {once: true})
     }
 
     renderComposer() {
