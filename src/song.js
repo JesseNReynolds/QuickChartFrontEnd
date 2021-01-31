@@ -166,7 +166,6 @@ class Song{
             ]
         }
 
-        
         const nameField = document.getElementById('song-name-field')
         const song = new Song(nameField.value, configObj, composerObj.id)
         fetch(`${BASEURL}/songs`, {
@@ -177,7 +176,11 @@ class Song{
             },
             body: `{"name":"${song.name}","composer_id":${song.composerID},"properties":${JSON.stringify(configObj)}}`,
             })
-            // .then(() => composerObj.renderComposer())
+            .then(resp => resp.json())
+            .then(songObj => {
+                const newSong = Song.newFromObj(songObj);
+                newSong.showSong()
+            })
         
     }
 

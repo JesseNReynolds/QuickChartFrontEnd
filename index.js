@@ -30,8 +30,6 @@ function fetchComposers() {
             })
         })
         .then( () => newComposerButton() )
-
-
 }
 
 // Fill content with list of songs
@@ -49,41 +47,3 @@ function fetchSongs() {
             })
         })
 }
-
-// Composer creation
-
-function newComposerButton() {
-    const newComposerButton = document.createElement('button')
-    newComposerButton.classList += 'grey-button'
-    newComposerButton.id = 'new-composer-button'
-    newComposerButton.innerText = "Add a New Composer"
-    CONTENT.appendChild(newComposerButton)
-    newComposerButton.addEventListener('click', () => createNewComposerForm(), {once: true})
-}
-
-function createNewComposerForm() {
-    const newComposerButton = document.getElementById('new-composer-button')
-    newComposerButton.innerText = "Submit New Composer"
-    newComposerButton.addEventListener('click', persistNewComposer, {once: true})
-    const nameField = document.createElement('input')
-    const label = document.createElement('label')
-    label.innerText = "Name: "
-    nameField.id = 'composer-name-field'
-    CONTENT.insertBefore(label, newComposerButton)
-    CONTENT.insertBefore(nameField, newComposerButton)
-}
-
-function persistNewComposer() {
-    const nameField = document.getElementById('composer-name-field')
-    const composer = new Composer(nameField.value)
-    fetch(`${BASEURL}/composers`, {
-        method: 'POST',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(composer),
-    })
-    .then(() => fetchComposers())
-}
-
