@@ -29,7 +29,7 @@ function fetchComposers() {
                c.renderComposer();
             })
         })
-        .then( () => newComposerButton() )
+        .then( () => Composer.newComposerButton() )
 }
 
 // Fill content with list of songs

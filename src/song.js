@@ -30,6 +30,7 @@ class Song{
         const showSongContainer = document.createElement('div');
         showSongContainer.id += 'show-song-container'
         showSongContainer.innerHTML = `<h2>${this.name}</h2>`
+        showSongContainer.dataset.songID = `${this.id}`
         CONTENT.appendChild(showSongContainer);
         this.measuresToDivs()
     }
@@ -128,8 +129,48 @@ class Song{
             button.classList += 'grey-button'
             button.innerText = "Save Changes"
             CONTENT.appendChild(button)
-            button.addEventListener('click', () => console.log('come back to build function!'), {once: true})
+            button.addEventListener('click', Song.updateSong, {once: true})
         }
+    }
+
+    static updateSong() {
+        const songID = document.getElementById('show-song-container').dataset.songID
+        const measures = document.querySelectorAll('div.measure')
+
+        const collectionArray = []
+        measures.forEach(measure =>{
+            const newMeasureObj = {
+                firstHalf: {
+                    interval: measure.childNodes[0].childNodes[0].value,
+                    modifier: measure.childNodes[0].childNodes[1].value
+                },
+                secondHalf: {
+                    interval: measure.childNodes[1].childNodes[0].value,
+                    modifier: measure.childNodes[1].childNodes[1].value
+                }
+            }
+            collectionArray.push(newMeasureObj)
+        })
+        
+        const persistObj = {
+            properties: {
+                measures: collectionArray
+            } 
+        }
+
+        fetch(`${BASEURL}/songs/${songID}`, {
+            method: 'PATCH',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: `${JSON.stringify(persistObj)}`,
+            })
+            .then(resp => resp.json())
+            .then(songObj => {
+                const newSong = Song.newFromObj(songObj);
+                newSong.showSong()
+            }) 
     }
 
     static newSongButton(composerObj) {
