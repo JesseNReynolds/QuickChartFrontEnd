@@ -2,7 +2,7 @@
 
 ## What?
 A simple tool for charting music using the [Nashville Number System](https://en.wikipedia.org/wiki/Nashville_Number_System).
-[Short demo video](https://youtu.be/RayplgaGTFY)
+[Short demo video](https://youtu.be/RayplgaGTFY).
 
 ## Why?
 I wanted a tool to chart in this way, and was learning to make single page webapps with vanilla JS, so that's what I made.
